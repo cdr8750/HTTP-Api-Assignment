@@ -1,0 +1,26 @@
+{
+  "name": "http-api-assignment",
+  "version": "1.0.0",
+  "description": "HTTP API Assignment",
+  "main": "./src/start.js",
+  "scripts": {
+    "start": "node ./src/server.js",
+    "pretest": "eslint ./src --fix",
+    "test": "echo \"Test Completed\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cdr8750/http-api-assignment.git"
+  },
+  "author": "cdr8750",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cdr8750/http-api-assignment/issues"
+  },
+  "homepage": "https://github.com/cdr8750/http-api-assignment#readme",
+  "devDependencies": {
+    "eslint": "^4.17.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0"
+  }
+}

@@ -6,7 +6,45 @@
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
   <script type="text/babel">
-
+	
+	const handleResponse = (xhr, xml) => {
+	  const content = document.querySelector('#content');
+	  
+	  if(xml){
+		const xmlParser = new DOMParser();
+		const response = xmlParser.parseFromString(xhr.response, 'text/xml');
+	    content.innerHTML = "<h1>Message: " +  response.childNodes[0].childNodes[0].innerHTML + "</h1>"
+		console.dir(response.childNodes[0].childNodes[0]);
+	  } else {
+	    const response = JSON.parse(xhr.response);
+	    content.innerHTML = "<h1>Message: " + response.message + "</h1>";
+	    console.dir(response);
+	  }
+	}
+	
+	const sendRequest = () => {
+	  const page = document.querySelector('#page').value;
+	  const type = document.querySelector('#type').value;
+	  
+	  const xhr = new XMLHttpRequest();
+	  xhr.open('GET', page);
+	  xhr.setRequestHeader('Accept', type);
+	  
+	  if(type === "text/xml"){
+	    xhr.onload = () => handleResponse(xhr, true);
+	  } else {
+	    xhr.onload = () => handleResponse(xhr, false)
+	  }
+	  
+	  xhr.send();
+	}
+	
+    const init = () => {
+	  const send = document.querySelector('#send');
+	  send.onclick = sendRequest;
+	}
+	
+	window.onload = init;
   </script>
 </head>
 <body>
